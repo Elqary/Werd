@@ -1,9 +1,8 @@
 const express = require('express');
+const initializeBot = require('./index');
+
 const app = express();
 const port = 8000;
-
-// استيراد الكود الخاص بك من index.js
-const startBot = require('./index');
 
 // تعريف مسار أساسي للتحقق من أن الخادم يعمل
 app.get('/', (req, res) => {
@@ -15,5 +14,7 @@ app.listen(port, () => {
   console.log(`الخادم يعمل على http://localhost:${port}`);
   
   // بدء تشغيل البوت الخاص بك
-  startBot();
+  initializeBot().catch(err => {
+    console.error('حدث خطأ أثناء تشغيل البوت:', err);
+  });
 });
