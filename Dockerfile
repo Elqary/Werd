@@ -8,7 +8,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # تثبيت التبعيات
-#RUN npm install
+RUN npm install
 
 # نسخ بقية ملفات التطبيق
 COPY . .
