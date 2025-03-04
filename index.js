@@ -174,5 +174,11 @@ const startBot = async () => {
   schedulePrayerQuranVerses();
 };
 
-// تشغيل البوت
-startBot();
+// التحقق من حالة الاتصال
+sock.ev.on('connection.update', (update) => {
+  const { connection } = update;
+  if (connection === 'connected') {
+    console.log('تم الاتصال بنجاح!');
+    startBot();
+  }
+});
