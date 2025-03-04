@@ -9,7 +9,7 @@ COPY package.json yarn.lock* ./
 COPY . .
 
 # تثبيت التبعيات
-RUN npm install
+#RUN npm install
 
 # تعيين الأمر الافتراضي لتشغيل البوت
 CMD ["node", "index.js"]
