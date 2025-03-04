@@ -28,7 +28,7 @@ const delayBetweenRequests = 3000; // تأخير 3 ثوانٍ بين كل طلب
 // دالة لتهيئة البوت
 const initializeBot = async () => {
   // إدارة حالة المصادقة
-  const { state, saveCreds } = await useMultiFileAuthState('./auth_info');
+  const { state, saveCreds } = await useMultiFileAuthState('./auth_info0');
 
   // إنشاء اتصال مع واتساب
   const sock = makeWASocket({
