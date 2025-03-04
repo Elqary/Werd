@@ -1,20 +1,20 @@
 # استخدام صورة Node.js كأساس
-FROM node:16
+FROM node:18
 
-# إنشاء مجلد التطبيق
+# تعيين مجلد العمل داخل الحاوية
 WORKDIR /app
 
 # نسخ ملف package.json و package-lock.json
 COPY package*.json ./
 
-# تثبيت التبعيات
+# تثبيت الاعتماديات
 RUN npm install
 
-# نسخ بقية ملفات التطبيق
+# نسخ بقية الملفات
 COPY . .
 
-# تثبيت PM2 بشكل عام
-RUN npm install -g pm2
+# تعيين المنفذ الذي سيعمل عليه التطبيق
+EXPOSE 8000
 
-# تعيين الأمر الافتراضي لتشغيل التطبيق باستخدام PM2
-CMD ["pm2-runtime", "start", "index.js"]
+# تشغيل التطبيق
+CMD ["node", "server.js"]
