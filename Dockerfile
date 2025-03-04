@@ -1,15 +1,20 @@
 # استخدام صورة Node.js كأساس
-FROM node:18-alpine
+FROM node:16
 
-# تعيين مجلد العمل داخل الحاوية
+# إنشاء مجلد التطبيق
 WORKDIR /app
 
-# نسخ ملفات المشروع إلى الحاوية
-COPY package.json yarn.lock* ./
-COPY . .
+# نسخ ملف package.json و package-lock.json
+COPY package*.json ./
 
 # تثبيت التبعيات
 #RUN npm install
 
-# تعيين الأمر الافتراضي لتشغيل البوت
-CMD ["node", "index.js"]
+# نسخ بقية ملفات التطبيق
+COPY . .
+
+# تثبيت PM2 بشكل عام
+RUN npm install -g pm2
+
+# تعيين الأمر الافتراضي لتشغيل التطبيق باستخدام PM2
+CMD ["pm2-runtime", "start", "index.js"]
